@@ -4,15 +4,15 @@
       .side-bar__header__content__name
         = current_user.name
       .side-bar__header__content__icon
-        = link_to "#" do
+        = link_to new_group_path do
           = icon("fas", "edit", class: "side-bar__header__content__icon")
         = link_to edit_user_path(current_user) do
           = icon("fas", "cog", class: "side-bar__header__content__icon")
 
 
-  .side-bar__body
-    .side-bar__body__content 
-      .side-bar__body__content__group-name
-        グループ名
-      .side-bar__body__content__text
-        メッセージ
+  .side-bar__body    
+    - current_user.groups.each do |group|
+      .side-bar__body__content 
+        = link_to "#{group.group_name}", root_path, class:"side-bar__body__content__group-name", style:"text-decoration: none"
+        .side-bar__body__content__text
+          メッセージ
